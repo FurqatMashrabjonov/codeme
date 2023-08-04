@@ -21,8 +21,8 @@ class SocialController extends Controller
 
     public function githubCallback(Request $request)
     {
-        DB::beginTransaction();
-        try {
+//        DB::beginTransaction();
+//        try {
             $github_user = GithubDTO::from((array)Socialite::driver('github')->user());
             $website_user = User::where('email', $github_user->email)->first();
             if ($website_user == null) {
@@ -35,13 +35,15 @@ class SocialController extends Controller
             if ($website_user->github == null) {
                 $website_user->github()->create($github_user->toArray());
             }
-        } catch (\Exception $e) {
-            DB::rollBack();
-            dd($e->getMessage());
-            return redirect()->route('login')->with('error', 'Something went wrong');
-        }
-        DB::commit();
-        auth()->login($website_user);
-        return redirect(url('/dashboard'));
+            dd($website_user->toArray(), $github_user->toArray());
+
+//        } catch (\Exception $e) {
+//            DB::rollBack();
+//            dd($e->getMessage());
+//            return redirect()->route('login')->with('error', 'Something went wrong');
+//        }
+//        DB::commit();
+//        auth()->login($website_user);
+//        return redirect(url('/dashboard'));
     }
 }

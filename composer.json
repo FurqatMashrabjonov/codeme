@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.8",
         "laravel/tinker": "^2.8",
+        "opcodesio/log-viewer": "^2.5",
         "sowrensen/svg-avatar-generator": "^1.4",
         "spatie/data-transfer-object": "^3.9",
         "spatie/laravel-data": "^3.7",

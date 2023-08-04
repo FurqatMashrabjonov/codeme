@@ -21,22 +21,23 @@ class SocialController extends Controller
 
     public function githubCallback(Request $request)
     {
-        dd($request->all(), config('services.github'));
+//        dd($request->all(), config('services.github'));
 //        DB::beginTransaction();
 //        try {
             $github_user = GithubDTO::from((array)Socialite::driver('github')->user());
-            $website_user = User::where('email', $github_user->email)->first();
-            if ($website_user == null) {
-                $website_user = User::create([
-                    'name' => $github_user->name,
-                    'email' => $github_user->email,
-                    'password' => Hash::make($github_user->id),
-                ]);
-            }
-            if ($website_user->github == null) {
-                $website_user->github()->create($github_user->toArray());
-            }
-            dd($website_user->toArray(), $github_user->toArray());
+            dd($github_user->toArray());
+//            $website_user = User::where('email', $github_user->email)->first();
+//            if ($website_user == null) {
+//                $website_user = User::create([
+//                    'name' => $github_user->name,
+//                    'email' => $github_user->email,
+//                    'password' => Hash::make($github_user->id),
+//                ]);
+//            }
+//            if ($website_user->github == null) {
+//                $website_user->github()->create($github_user->toArray());
+//            }
+//            dd($website_user->toArray(), $github_user->toArray());
 
 //        } catch (\Exception $e) {
 //            DB::rollBack();

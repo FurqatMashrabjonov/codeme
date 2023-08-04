@@ -42,6 +42,15 @@ Route::prefix('social')->as('social.')
     ->group(function (){
         Route::get('/github', 'github')->name('github');
         Route::any('/github/callback', 'githubCallback')->name('github.callback');
+
+        Route::get('/google', function (){
+            return Socialite::driver('google')->redirect();
+        })->name('google');
+        Route::get('/google/callback', function (){
+            $user = Socialite::driver('google')->user();
+            dd($user);
+        })->name('google.callback');
+
     });
 
 

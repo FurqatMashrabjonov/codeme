@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,4 +61,15 @@ Route::prefix('projects')->as('projects.')
 
 Route::get('/config', function (){
     dd(config('services.github'));
+});
+
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+});
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('github')->user();
+    dd($user);
+    // $user->token
 });

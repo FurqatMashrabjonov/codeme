@@ -37,6 +37,7 @@ class SocialController extends Controller
             }
         } catch (\Exception $e) {
             DB::rollBack();
+            dd($e->getMessage());
             return redirect()->route('login')->with('error', 'Something went wrong');
         }
         DB::commit();

@@ -56,3 +56,8 @@ Route::prefix('projects')->as('projects.')
         Route::get('create', 'create')->name('create');
         Route::post('store', 'store')->name('store');
     });
+
+
+Route::get('/config', function (){
+    dd(config('services.github'));
+});

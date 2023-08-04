@@ -21,6 +21,7 @@ class SocialController extends Controller
 
     public function githubCallback(Request $request)
     {
+        dd($request->all(), config('services.github'));
 //        DB::beginTransaction();
 //        try {
             $github_user = GithubDTO::from((array)Socialite::driver('github')->user());
